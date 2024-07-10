@@ -27,7 +27,13 @@ export default {
   methods: {
     submitHandler(e) {
       e.preventDefault();
-      this.$store.commit("setLoading");
+      const data = {
+        username: "utribol",
+        email: "matribol@gmail.x",
+        password: "utrimatri",
+      };
+      this.$store.dispatch("register", data);
+      // the data whic is second param of dispatch is called - "Payload"
     },
   },
 };
