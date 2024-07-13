@@ -13,28 +13,44 @@
         @click="toHomeHandler"
       />
     </a>
-
     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-      <RouterLink
-        :to="{ name: 'register' }"
-        class="me-3 py-2 link-body-emphasis text-decoration-none"
-        >Register</RouterLink
-      >
+      <template v-if="isLoggedIn">
+        <RouterLink
+          :to="{ name: 'home' }"
+          class="me-3 py-2 link-body-emphasis text-decoration-none"
+          >{{ user.username }}</RouterLink
+        >
+      </template>
+      <template v-if="!isLoggedIn">
+        <RouterLink
+          :to="{ name: 'register' }"
+          class="me-3 py-2 link-body-emphasis text-decoration-none"
+          >Register</RouterLink
+        >
 
-      <RouterLink
-        :to="{ name: 'login' }"
-        class="me-3 py-2 link-body-emphasis text-decoration-none"
-        >Login</RouterLink
-      >
+        <RouterLink
+          :to="{ name: 'login' }"
+          class="me-3 py-2 link-body-emphasis text-decoration-none"
+          >Login</RouterLink
+        >
+      </template>
     </nav>
   </div>
 </template>
 
 <script>
 import { logo } from "@/constants";
+import { mapState } from "vuex";
+import auth from "@/modules/auth";
 export default {
   data() {
     return logo;
+  },
+  computed: {
+    ...mapState({
+      user: (state) => state.auth.user,
+      isLoggedIn: (state) => state.auth.isLoggedIn,
+    }),
   },
   methods: {
     toHomeHandler() {
