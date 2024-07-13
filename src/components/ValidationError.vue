@@ -3,7 +3,7 @@
     <li
       v-for="errorMessage in errorMessages"
       :key="errorMessage"
-      class="list-group-item list-group-item-danger mt-2 px-2"
+      class="list-group-item list-group-item-danger mt-2 px-2 item"
     >
       {{ errorMessage }}
     </li>
@@ -29,4 +29,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.item {
+  background: #c51244 !important;
+  padding: 10px !important;
+  border-radius: 0 !important;
+  position: relative;
+  display: inline-block !important;
+  box-shadow: 1px 1px 1px #aaaaaa;
+  margin-top: 10px;
+  color: white;
+  transition: ease-in-out;
+}
+</style>
